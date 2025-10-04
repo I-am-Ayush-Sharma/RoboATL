@@ -767,29 +767,6 @@ section.webinars {
   box-shadow: 0 6px 20px rgba(184, 160, 216, 0.6);
 }
 
-@media (max-width: 768px) {
-  .webinar-card {
-    padding: 40px 30px;
-  }
-
-  h1 {
-    font-size: 2rem;
-  }
-
-  .date-time {
-    font-size: 1.1rem;
-  }
-
-  .topics {
-    font-size: 0.95rem;
-  }
-
-  .register-btn {
-    font-size: 1.1rem;
-    padding: 15px 40px;
-  }
-}
-
 .glow-btn {
   background: #3c00a0;
   /* button purple */

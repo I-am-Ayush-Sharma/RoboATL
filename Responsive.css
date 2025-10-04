@@ -308,6 +308,27 @@
     .modal h2 {
         font-size: 28px;
     }
+
+    .webinar-card {
+        padding: 40px 30px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .date-time {
+        font-size: 1.1rem;
+    }
+
+    .topics {
+        font-size: 0.95rem;
+    }
+
+    .register-btn {
+        font-size: 1.1rem;
+        padding: 15px 40px;
+    }
 }
 
 @media (max-width: 480px) {
