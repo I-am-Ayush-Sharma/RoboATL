@@ -5,11 +5,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RoboATL - STEM & Robotics Programs</title>
+  <!-- Favicon for most browsers -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
+  <!-- Fallback for older browsers -->
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Apple Touch Icon (iOS) -->
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- Android/Chrome Icons -->
+  <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
+
+  <!-- Web Manifest -->
+  <link rel="manifest" href="/site.webmanifest">
+
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="Responsive.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Lalezar&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Anuphan:wght@100..700&family=Jura:wght@300..700&family=Lalezar&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Anuphan:wght@100..700&family=Jura:wght@300..700&family=Lalezar&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
   </style>
 </head>
 
@@ -63,7 +82,322 @@
     </div>
   </main>
 
+  <section class="shades block">
+    <!-- Box 1 -->
+    <div class="shade s1">
+      <h1>Why RoboATL?</h1>
+      <a href="#">Learn More</a>
+    </div>
 
+    <!-- Box 2 -->
+    <div class="shade s2">
+      <img src="Assets/Images/laptop icon.png" alt="">
+      <h2>Hands-on Projects</h2>
+      <p>Build real robots and circuits from day one.</p>
+    </div>
+
+    <!-- Box 3 -->
+    <div class="shade s3">
+      <img src="Assets/Images/cap icon.png" alt="">
+      <h2>School-friendly</h2>
+      <p>Flexible curriculum and delivery for institutions.</p>
+    </div>
+
+    <!-- Box 4 -->
+    <div class="shade s4">
+      <img src="Assets/Images/stairs icon.png" alt="">
+      <h2>Pathway to Careers</h2>
+      <p>Future skills in AI, robotics, and automation.</p>
+    </div>
+  </section>
+
+
+  <section class="programs block">
+    <h1>Programs</h1>
+    <div class="slider-outer">
+      <div class="slider-container">
+        <button class="nav-button prev" onclick="changeSlide(-1)" aria-label="Previous slide">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 18L9 12L15 6" stroke="#ffffff" stroke-width="5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </button>
+
+        <div class="slider-wrapper">
+          <div class="slider" id="slider">
+            <div class="slide active">
+              <div class="popular">
+                <h6>Popular</h6>
+              </div>
+              <div class="head-content">
+                <h1 class="title">Robotics Basics 101</h1>
+
+                <p class="subtitle">Beginner • Online / Offline</p>
+              </div>
+              <div class="text-content">
+                <p class="description">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur,
+                  deleniti fugit incidunt obcaecati eum odio optio veritatis vitae
+                  molestiae qui minus aspernatur ratione in autem amet possimus beatae
+                  labore minima
+                </p>
+
+                <h4>Price - ₹4999</h4>
+
+                <div class="buttons-container">
+                  <button class="button enroll-button">Enroll</button>
+                  <button class="button brochure-button">Brochure</button>
+                </div>
+              </div>
+
+
+              <div class="image">
+                <img src="Assets/Images/program.jpeg" alt="">
+              </div>
+            </div>
+            <div class="slide active">
+              <div class="head-content">
+                <h1 class="title">Embedded Systems & IoT</h1>
+
+                <p class="subtitle">Intermediate • Online</p>
+              </div>
+              <div class="text-content">
+                <p class="description">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur,
+                  deleniti fugit incidunt obcaecati eum odio optio veritatis vitae
+                  molestiae qui minus aspernatur ratione in autem amet possimus beatae
+                  labore minima
+                </p>
+                <h4>Price - ₹6999</h4>
+                <div class="buttons-container">
+                  <button class="button enroll-button">Enroll</button>
+                  <button class="button brochure-button">Brochure</button>
+                </div>
+              </div>
+
+
+              <div class="image">
+                <img src="Assets/Images/program.jpeg" alt="">
+              </div>
+            </div>
+            <div class="slide active">
+              <div class="head-content">
+                <h1 class="title">AI for Robotics</h1>
+
+                <p class="subtitle">Advanced • Online</p>
+              </div>
+              <div class="text-content">
+                <p class="description">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur,
+                  deleniti fugit incidunt obcaecati eum odio optio veritatis vitae
+                  molestiae qui minus aspernatur ratione in autem amet possimus beatae
+                  labore minima
+                </p>
+                <h4>Price - ₹9999</h4>
+                <div class="buttons-container">
+                  <button class="button enroll-button">Enroll</button>
+                  <button class="button brochure-button">Brochure</button>
+                </div>
+              </div>
+
+
+              <div class="image">
+                <img src="Assets/Images/program.jpeg" alt="">
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <button class="nav-button next" onclick="changeSlide(1)" aria-label="Next slide">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 18L15 12L9 6" stroke="#ffffff" stroke-width="5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="kits block">
+    <div class="kits-head">
+      <img src="Assets/Images/strip.png" alt="">
+      <h1>Kits</h1>
+      <img src="Assets/Images/strip.png" alt="">
+    </div>
+    <div class="kitbox">
+      <div class="card">
+        <div>
+          <h1 class="kit-title">RoboATL Starter Kit</h1>
+          <p class="kit-subtitle">Beginner • Age 8+</p>
+          <p class="kit-price">Price: ₹1999–₹2499</p>
+        </div>
+        <button class="button">Inquiry</button>
+      </div>
+      <div class="card">
+        <div>
+          <h1 class="kit-title">IoT Explorer Kit</h1>
+          <p class="kit-subtitle">Intermediate • Age 12+</p>
+          <p class="kit-price">Price: ₹2499–₹3499</p>
+        </div>
+        <button class="button">Inquiry</button>
+      </div>
+    </div>
+
+    <a href="#" class="view-more">View More >></a>
+  </section>
+
+  <section class="webinars block">
+    <div class="webinar-head">
+      <h1>upcoming webinars:-</h1>
+    </div>
+    <div class="webinar-cards">
+      <div class="webinar-card">
+        <h1>RoboATL Presents a Free Webinar</h1>
+        <div class="date-time">9/28/2025, 6:00:00 PM</div>
+        <div class="topics">Robotics,AI,Coding,Drones,3D Printing,Free E-certificate for all Participants</div>
+        <button class="register-btn">Register</button>
+      </div>
+      <button class="glow-btn">All Webinars</button>
+    </div>
+  </section>
+
+  <section class="tests block">
+    <h1>What People Say?</h1>
+    <div class="tests-slider">
+      <div class="slider-container-tests">
+        <div class="slides-wrapper-tests">
+          <div class="slide-tests active">
+            <div class="testimonial-card">
+              <div class="avatar-container">
+                <div class="avatar-icon"></div>
+                <div class="avatar-body"></div>
+              </div>
+              <div class="quote">"Students loved the hands-on kits!"</div>
+              <div class="attribution">
+                <div class="name">— Ms. Sharma, STEM Coordinator,</div>
+                <div class="title">Greenfield School</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="slide-tests">
+            <div class="testimonial-card">
+              <div class="avatar-container">
+                <div class="avatar-icon"></div>
+                <div class="avatar-body"></div>
+              </div>
+              <div class="quote">"The program transformed our science classes completely!"</div>
+              <div class="attribution">
+                <div class="name">— Mr. Patel, Principal,</div>
+                <div class="title">Sunrise Academy</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="slide-tests">
+            <div class="testimonial-card">
+              <div class="avatar-container">
+                <div class="avatar-icon"></div>
+                <div class="avatar-body"></div>
+              </div>
+              <div class="quote">"Best investment we made for practical learning!"</div>
+              <div class="attribution">
+                <div class="name">— Dr. Kumar, Director,</div>
+                <div class="title">Innovation High School</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="indicators">
+          <button class="indicator active" data-slide-tests="0" aria-label="Go to slide-tests 1"></button>
+          <button class="indicator" data-slide-tests="1" aria-label="Go to slide-tests 2"></button>
+          <button class="indicator" data-slide-tests="2" aria-label="Go to slide-tests 3"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="brand-header">
+          <div class="logo-placeholder">
+            <img src="Assets/Images/logob.png" alt="" width="50px">
+          </div>
+          <h2 class="brand-name">RoboATL</h2>
+        </div>
+        <p class="brand-description">
+          Future-ready STEM & Robotics for every learner — from classrooms to clubs.
+        </p>
+        <div class="social-icons">
+          <div class="icon-placeholder">
+            <img src="Assets/Images/wt.png" alt="" width="30px">
+          </div>
+          <div class="icon-placeholder">
+            <img src="Assets/Images/gm.png" alt="" width="30px">
+          </div>
+          <div class="icon-placeholder">
+            <img src="Assets/Images/in.png" alt="" width="25px">
+          </div>
+          <div class="icon-placeholder">
+            <img src="Assets/Images/insta.png" alt="" width="30px">
+          </div>
+          <div class="icon-placeholder">
+            <img src="Assets/Images/yt.png" alt="" width="30px">
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <h3>Pages</h3>
+        <div class="footer-links">
+          <a href="#programs">Programs</a>
+          <a href="#kits">Kits</a>
+          <a href="#webinars">Webinars</a>
+          <a href="#blog">Blog</a>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <h3>Legal</h3>
+        <div class="footer-links">
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+          <a href="#robots">Robots</a>
+          <a href="#sitemap">Sitemap</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="copyright">© 2025 RoboATL. All rights reserved.</p>
+      <p class="built-with">
+        Built with <span class="tech-badge">HTML</span> • <span class="tech-badge">CSS</span> • <span
+          class="tech-badge">JS</span>
+      </p>
+    </div>
+  </footer>
+
+
+  <!-- Floating Icon -->
+  <div class="floating-container" id="floatingIcon">
+    <div class="download-tooltip">Download our app</div>
+    <div class="floating-icon" id="iconBtn">
+      <img src="Assets/Images/logob.png" alt="" width="60px">
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <h2>Download RoboATL App</h2>
+      <p>Get the app for a better experience.</p>
+      <button class="download-btn" onclick="handleDownload()">Download for Android</button>
+      <button class="close-btn" onclick="closeModal()">Close</button>
+    </div>
+  </div>
 
 
   <script src="script.js"></script>
