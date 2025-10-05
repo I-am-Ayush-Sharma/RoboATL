@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RoboATL - STEM & Robotics Programs</title>
+  <title>RoboATL - Blog & News</title>
   <!-- Favicon for most browsers -->
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -21,14 +21,249 @@
 
   <!-- Web Manifest -->
   <link rel="manifest" href="/site.webmanifest">
-
-  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="Responsive.css">
+  <link rel="stylesheet" href="nav&footer.css">
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Lalezar&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Anuphan:wght@100..700&family=Jura:wght@300..700&family=Lalezar&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Anuphan:wght@100..700&family=Jura:wght@300..700&family=Lalezar&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --dark-purple: #0d0221;
+      --federal-blue: #0f084b;
+      --marian-blue: #26408b;
+      --light-blue: #a6cfd5;
+      --mint-green: #c2e7d9;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-header h1 {
+      color: var(--mint-green);
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .section-header p {
+      color: var(--light-blue);
+      font-size: clamp(1rem, 2vw, 1.2rem);
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .blog-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(166, 207, 213, 0.2);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--mint-green);
+      box-shadow: 0 10px 30px rgba(194, 231, 217, 0.2);
+    }
+
+    .blog-date {
+      color: var(--light-blue);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      background: rgba(166, 207, 213, 0.1);
+      border-radius: 20px;
+    }
+
+    .blog-card h2 {
+      color: var(--mint-green);
+      font-size: clamp(1.3rem, 3vw, 1.8rem);
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+
+    .blog-description {
+      color: var(--light-blue);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .read-btn {
+      background: linear-gradient(135deg, var(--marian-blue), var(--light-blue));
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .read-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(166, 207, 213, 0.4);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(13, 2, 33, 0.95);
+      z-index: 1000;
+      overflow-y: auto;
+      padding: 2rem 1rem;
+    }
+
+    .modal.active {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background: linear-gradient(135deg, var(--federal-blue), var(--marian-blue));
+      border: 2px solid var(--light-blue);
+      border-radius: 20px;
+      padding: 2.5rem;
+      max-width: 800px;
+      width: 100%;
+      margin: 2rem auto;
+      position: relative;
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: var(--mint-green);
+      color: var(--dark-purple);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 1.8rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      font-weight: bold;
+      line-height: 1;
+      z-index: 1001;
+    }
+
+    .close-btn:hover {
+      transform: rotate(90deg);
+      background: var(--light-blue);
+    }
+
+    .modal-content h2 {
+      color: var(--mint-green);
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      margin-bottom: 1rem;
+      padding-right: 3rem;
+    }
+
+    .modal-date {
+      color: var(--light-blue);
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: rgba(166, 207, 213, 0.1);
+      border-radius: 20px;
+    }
+
+    .modal-body {
+      color: var(--light-blue);
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .modal-body p {
+      margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .blog-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .blog-card {
+        padding: 1.5rem;
+      }
+
+      .modal-content {
+        padding: 2rem 1.5rem;
+        margin: 1rem;
+      }
+
+      .close-btn {
+        top: 1rem;
+        right: 1rem;
+        width: 35px;
+        height: 35px;
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .section-header {
+        margin-bottom: 2rem;
+      }
+
+      .modal-content {
+        padding: 1.5rem 1rem;
+      }
+
+      .modal-body {
+        font-size: 1rem;
+      }
+    }
   </style>
 </head>
 
@@ -65,20 +300,56 @@
 
 
 
+  <div class="container">
+    <div class="section-header">
+      <h1>Blog & News</h1>
+      <p>Stay updated with our latest insights and announcements</p>
+    </div>
+
+    <div class="blog-grid">
+      <div class="blog-card">
+        <span class="blog-date">August 15, 2025</span>
+        <h2>Why Robotics Belongs in Every School</h2>
+        <p class="blog-description">Robotics builds problem-solving...</p>
+        <button class="read-btn" data-modal="modal1">Read More</button>
+      </div>
+
+      <div class="blog-card">
+        <span class="blog-date">August 08, 2025</span>
+        <h2>How to Start Robotics at Your School</h2>
+        <p class="blog-description">A simple roadmap for institutions...
+        </p>
+        <button class="read-btn" data-modal="modal2">Read More</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 1 -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <button class="close-btn">&times;</button>
+      <h2>Why Robotics Belongs in Every School</h2>
+      <span class="modal-date">August 15, 2025</span>
+      <div class="modal-body">
+        <p>Full post HTML here...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2 -->
+  <div id="modal2" class="modal">
+    <div class="modal-content">
+      <button class="close-btn">&times;</button>
+      <h2>How to Start Robotics at Your School</h2>
+      <span class="modal-date">August 08, 2025</span>
+      <div class="modal-body">
+        <p>Roadmap post...</p>
+      </div>
+    </div>
+  </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-    <footer class="footer">
+   <footer class="footer">
     <div class="footer-content">
       <div class="footer-brand">
         <div class="brand-header">
@@ -93,28 +364,28 @@
         <div class="social-icons">
           <div class="icon-placeholder">
             <a href="https://api.whatsapp.com/send/?phone=8447886888&text&type=phone_number&app_absent=0">
-            <img src="Assets/Images/wt.png" alt="" width="30px">
+              <img src="Assets/Images/wt.png" alt="" width="30px">
             </a>
           </div>
           <a href="https://www.roboatl.in/cdn-cgi/l/email-protection#9af3f4fcf5dae8f5f8f5fbeef6b4ffe2fbf7eaf6ff">
-          <div class="icon-placeholder">
-            <img src="Assets/Images/gm.png" alt="" width="30px">
-          </div>
+            <div class="icon-placeholder">
+              <img src="Assets/Images/gm.png" alt="" width="30px">
+            </div>
           </a>
           <a href="https://www.linkedin.com/company/roboatl-in/">
-          <div class="icon-placeholder">
-            <img src="Assets/Images/in.png" alt="" width="25px">
-          </div>
+            <div class="icon-placeholder">
+              <img src="Assets/Images/in.png" alt="" width="25px">
+            </div>
           </a>
           <a href="https://www.instagram.com/roboatl?igsh=MTFnbHlvMHg0aHM3Zw==">
-          <div class="icon-placeholder">
-            <img src="Assets/Images/insta.png" alt="" width="30px">
-          </div>
+            <div class="icon-placeholder">
+              <img src="Assets/Images/insta.png" alt="" width="30px">
+            </div>
           </a>
           <a href="https://youtube.com/@roboatl-in?si=yjjylYiNqPAKwTl3">
-          <div class="icon-placeholder">
-            <img src="Assets/Images/yt.png" alt="" width="30px">
-          </div>
+            <div class="icon-placeholder">
+              <img src="Assets/Images/yt.png" alt="" width="30px">
+            </div>
           </a>
         </div>
       </div>
@@ -149,7 +420,72 @@
     </div>
   </footer>
 
-    <script src="script.js"></script>
+  <script>
+    // Get all read more buttons
+    const readBtns = document.querySelectorAll('.read-btn');
+    const closeBtns = document.querySelectorAll('.close-btn');
+    const modals = document.querySelectorAll('.modal');
+
+    // Open modal function
+    function openModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    // Close modal function
+    function closeModal(modal) {
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Add click event to all read more buttons
+    readBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const modalId = btn.getAttribute('data-modal');
+        openModal(modalId);
+      });
+    });
+
+    // Add click event to all close buttons
+    closeBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const modal = btn.closest('.modal');
+        closeModal(modal);
+      });
+    });
+
+    // Close modal when clicking on overlay (outside modal content)
+    modals.forEach(modal => {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          closeModal(modal);
+        }
+      });
+    });
+
+    // Prevent clicks inside modal content from closing the modal
+    document.querySelectorAll('.modal-content').forEach(content => {
+      content.addEventListener('click', (e) => {
+        e.stopPropagation();
+      });
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const activeModal = document.querySelector('.modal.active');
+        if (activeModal) {
+          closeModal(activeModal);
+        }
+      }
+    });
+  </script>
+  <script></script>
 </body>
 
 </html>

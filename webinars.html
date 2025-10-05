@@ -22,13 +22,250 @@
   <!-- Web Manifest -->
   <link rel="manifest" href="/site.webmanifest">
 
-  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="Responsive.css">
+  <link rel="stylesheet" href="nav&footer.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Lalezar&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Anuphan:wght@100..700&family=Jura:wght@300..700&family=Lalezar&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Anuphan:wght@100..700&family=Jura:wght@300..700&family=Lalezar&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+    :root {
+      --dark-purple: #0d0221ff;
+      --federal-blue: #0f084bff;
+      --marian-blue: #26408bff;
+      --light-blue: #a6cfd5ff;
+      --mint-green: #c2e7d9ff;
+    }
+
+    .container {
+      padding: 10px 20px;
+      padding-bottom: 60px;
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .header {
+      margin-bottom: 50px;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--mint-green), var(--light-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 3px;
+      margin-bottom: 30px;
+      animation: glow 3s ease-in-out infinite;
+      margin-top: 20px;
+    }
+
+    @keyframes glow {
+
+      0%,
+      100% {
+        filter: drop-shadow(0 0 20px rgba(162, 207, 213, 0.3));
+      }
+
+      50% {
+        filter: drop-shadow(0 0 40px rgba(162, 207, 213, 0.6));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 30px 10px;
+      }
+
+      .header h1 {
+        font-size: 2.5rem;
+      }
+    }
+
+    .webinar-page-card {
+      background: white;
+      border-radius: 20px;
+      max-width: 450px;
+      width: 100%;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(13, 2, 33, 0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .webinar-page-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .webinar-page-header {
+      background: linear-gradient(135deg, var(--federal-blue) 0%, var(--marian-blue) 100%);
+      padding: 30px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .webinar-page-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(166, 207, 213, 0.15) 0%, transparent 70%);
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.1);
+      }
+    }
+
+    .webinar-page-badge {
+      display: inline-block;
+      background: var(--mint-green);
+      color: var(--dark-purple);
+      padding: 8px 20px;
+      border-radius: 25px;
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 15px;
+      position: relative;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+
+    .webinar-page-header h1 {
+      color: white;
+      font-size: 28px;
+      font-weight: 700;
+      position: relative;
+      line-height: 1.3;
+    }
+
+    .webinar-page-body {
+      padding: 30px;
+    }
+
+    .webinar-page-info-section {
+      margin-bottom: 25px;
+    }
+
+    .webinar-page-info-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--marian-blue);
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .webinar-page-info-label svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .webinar-page-info-content {
+      color: var(--dark-purple);
+      font-size: 16px;
+      font-weight: 500;
+      margin-left: 28px;
+    }
+
+    .webinar-page-topics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-left: 28px;
+    }
+
+    .webinar-page-topic-tag {
+      background: var(--light-blue);
+      color: var(--dark-purple);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .webinar-page-topic-tag:hover {
+      background: var(--marian-blue);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .webinar-page-certificate-badge {
+      background: linear-gradient(135deg, var(--mint-green) 0%, var(--light-blue) 100%);
+      color: var(--dark-purple);
+      padding: 15px 20px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: 600;
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .webinar-page-certificate-badge svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .webinar-page-book-button {
+      width: 100%;
+      background: linear-gradient(135deg, var(--federal-blue) 0%, var(--marian-blue) 100%);
+      color: white;
+      border: none;
+      padding: 16px;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 25px;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 15px rgba(38, 64, 139, 0.4);
+    }
+
+    .webinar-page-book-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(38, 64, 139, 0.6);
+      background: linear-gradient(135deg, var(--marian-blue) 0%, var(--federal-blue) 100%);
+    }
+
+    .webinar-page-book-button:active {
+      transform: translateY(0);
+    }
   </style>
 </head>
 
@@ -65,6 +302,70 @@
 
 
 
+  <div class="header">
+    <h1>WEBINARS</h1>
+  </div>
+  <div class="container">
+
+    <div class="webinar-page-card">
+      <div class="webinar-page-header">
+        <div class="webinar-page-badge">🎉 FREE WEBINAR</div>
+        <h1>RoboATL Presents a Free Webinar</h1>
+      </div>
+
+      <div class="webinar-page-body">
+        <div class="webinar-page-info-section">
+          <div class="webinar-page-info-label">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            Date & Time
+          </div>
+          <div class="webinar-page-info-content">9/28/2025, 6:00:00 PM</div>
+        </div>
+
+        <div class="webinar-page-info-section">
+          <div class="webinar-page-info-label">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+            </svg>
+            Topics Covered
+          </div>
+          <div class="webinar-page-topics">
+            <span class="webinar-page-topic-tag">Robotics</span>
+            <span class="webinar-page-topic-tag">AI</span>
+            <span class="webinar-page-topic-tag">Coding</span>
+            <span class="webinar-page-topic-tag">Drones</span>
+            <span class="webinar-page-topic-tag">3D Printing</span>
+          </div>
+        </div>
+
+        <div class="webinar-page-certificate-badge">
+          <svg fill="currentColor" viewBox="0 0 20 20">
+            <path
+              d="M9 2a2 2 0 00-2 2v8a2 2 0 002 2h6a2 2 0 002-2V6.414A2 2 0 0016.414 5L14 2.586A2 2 0 0012.586 2H9z" />
+            <path d="M3 8a2 2 0 012-2v10h8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z" />
+          </svg>
+          Free E-Certificate for All Participants
+        </div>
+
+        <button class="webinar-page-book-button" onclick="bookWebinar()">
+          Book Your Spot Now
+        </button>
+      </div>
+    </div>
+
+    <script>
+      function bookWebinar() {
+        alert('Registration form would open here!\n\nThank you for your interest in the RoboATL webinar!');
+        // Replace this with your actual registration link or form
+        // window.location.href = 'your-registration-url';
+      }
+    </script>
+
+  </div>
 
 
 
@@ -76,9 +377,7 @@
 
 
 
-
-
-    <footer class="footer">
+  <footer class="footer">
     <div class="footer-content">
       <div class="footer-brand">
         <div class="brand-header">
@@ -93,28 +392,28 @@
         <div class="social-icons">
           <div class="icon-placeholder">
             <a href="https://api.whatsapp.com/send/?phone=8447886888&text&type=phone_number&app_absent=0">
-            <img src="Assets/Images/wt.png" alt="" width="30px">
+              <img src="Assets/Images/wt.png" alt="" width="30px">
             </a>
           </div>
           <a href="https://www.roboatl.in/cdn-cgi/l/email-protection#9af3f4fcf5dae8f5f8f5fbeef6b4ffe2fbf7eaf6ff">
-          <div class="icon-placeholder">
-            <img src="Assets/Images/gm.png" alt="" width="30px">
-          </div>
+            <div class="icon-placeholder">
+              <img src="Assets/Images/gm.png" alt="" width="30px">
+            </div>
           </a>
           <a href="https://www.linkedin.com/company/roboatl-in/">
-          <div class="icon-placeholder">
-            <img src="Assets/Images/in.png" alt="" width="25px">
-          </div>
+            <div class="icon-placeholder">
+              <img src="Assets/Images/in.png" alt="" width="25px">
+            </div>
           </a>
           <a href="https://www.instagram.com/roboatl?igsh=MTFnbHlvMHg0aHM3Zw==">
-          <div class="icon-placeholder">
-            <img src="Assets/Images/insta.png" alt="" width="30px">
-          </div>
+            <div class="icon-placeholder">
+              <img src="Assets/Images/insta.png" alt="" width="30px">
+            </div>
           </a>
           <a href="https://youtube.com/@roboatl-in?si=yjjylYiNqPAKwTl3">
-          <div class="icon-placeholder">
-            <img src="Assets/Images/yt.png" alt="" width="30px">
-          </div>
+            <div class="icon-placeholder">
+              <img src="Assets/Images/yt.png" alt="" width="30px">
+            </div>
           </a>
         </div>
       </div>
@@ -149,7 +448,7 @@
     </div>
   </footer>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>

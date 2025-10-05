@@ -22,13 +22,376 @@
   <!-- Web Manifest -->
   <link rel="manifest" href="/site.webmanifest">
 
-  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="Responsive.css">
+  <link rel="stylesheet" href="nav&footer.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Lalezar&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Anuphan:wght@100..700&family=Jura:wght@300..700&family=Lalezar&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Anuphan:wght@100..700&family=Jura:wght@300..700&family=Lalezar&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+    :root {
+      --dark-purple: #0d0221ff;
+      --federal-blue: #0f084bff;
+      --marian-blue: #26408bff;
+      --light-blue: #a6cfd5ff;
+      --mint-green: #c2e7d9ff;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 20px;
+      padding-bottom: 60px;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      color: var(--mint-green);
+      margin-bottom: 50px;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+
+    .kits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+      gap: 30px;
+    }
+
+    .kit-card {
+      background: rgba(15, 8, 75, 0.4);
+      border-radius: 24px;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid rgba(166, 207, 213, 0.1);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(10px);
+    }
+
+    .kit-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(38, 64, 139, 0.2) 0%, rgba(166, 207, 213, 0.05) 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .kit-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--light-blue);
+      box-shadow: 0 20px 60px rgba(166, 207, 213, 0.15);
+    }
+
+    .kit-card:hover::before {
+      opacity: 1;
+    }
+
+    .kit-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--marian-blue), var(--light-blue));
+      border-radius: 12px;
+      margin-bottom: 25px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .kit-title {
+      font-size: 2rem;
+      color: var(--mint-green);
+      margin-bottom: 20px;
+      font-weight: 600;
+      position: relative;
+      z-index: 1;
+    }
+
+    .kit-meta {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 25px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .badge {
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .badge.level {
+      background: rgba(38, 64, 139, 0.6);
+      color: var(--light-blue);
+      border: 1px solid var(--marian-blue);
+    }
+
+    .badge.age {
+      background: rgba(166, 207, 213, 0.15);
+      color: var(--mint-green);
+      border: 1px solid rgba(166, 207, 213, 0.3);
+    }
+
+    .kit-description {
+      color: var(--light-blue);
+      margin-bottom: 25px;
+      line-height: 1.6;
+      font-size: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .kit-price {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 30px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .price-current {
+      font-size: 1.8rem;
+      color: var(--mint-green);
+      font-weight: 700;
+    }
+
+    .price-original {
+      font-size: 1.3rem;
+      color: var(--light-blue);
+      text-decoration: line-through;
+      opacity: 0.6;
+    }
+
+    .enquire-btn {
+      background: linear-gradient(135deg, var(--marian-blue), var(--light-blue));
+      color: white;
+      border: none;
+      padding: 16px 40px;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 8px 20px rgba(38, 64, 139, 0.3);
+    }
+
+    .enquire-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(166, 207, 213, 0.4);
+      background: linear-gradient(135deg, var(--light-blue), var(--mint-green));
+    }
+
+    .enquire-btn:active {
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 30px 10px;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      .kits-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .kit-card {
+        padding: 30px;
+      }
+
+      .kit-title {
+        font-size: 1.6rem;
+      }
+    }
+
+    /* Overlay (faded background) */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease;
+    }
+
+    /* Show overlay */
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(145deg, #2a1a7a, #1a0f50);
+      padding: 20px 35px;
+      width: 90%;
+      max-width: 480px;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .modal.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .modal h2 {
+      color: white;
+      font-size: 28px;
+      font-weight: 700;
+      margin: 0;
+      background: linear-gradient(135deg, #ffffff, #a8b2ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .close {
+      color: #fff;
+      font-size: 32px;
+      font-weight: 300;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 35px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .close:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: rotate(90deg);
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .input-group label {
+      color: #b8c1ff;
+      font-size: 14px;
+      font-weight: 500;
+      margin-left: 5px;
+      align-self: flex-start;
+    }
+
+    .modal input,
+    .modal select,
+    .modal textarea {
+      width: 100%;
+      padding: 10px 18px;
+      border-radius: 12px;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.95);
+      color: #1a0f50;
+      font-size: 15px;
+      font-family: inherit;
+      transition: all 0.3s ease;
+      outline: none;
+      margin-bottom: 10px;
+    }
+
+    .modal input:focus,
+    .modal select:focus,
+    .modal textarea:focus {
+      border-color: #667eea;
+      background: white;
+      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .modal input::placeholder,
+    .modal textarea::placeholder {
+      color: #888;
+    }
+
+    .modal select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231a0f50' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 15px center;
+      padding-right: 40px;
+    }
+
+    .modal textarea {
+      resize: vertical;
+      min-height: 100px;
+      font-family: inherit;
+    }
+
+    .submit-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.6);
+    }
+
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+
+    @media (max-width: 500px) {
+      .modal {
+        width: 95%;
+        padding: 30px 25px;
+      }
+
+      .modal h2 {
+        font-size: 24px;
+      }
+    }
+
   </style>
 </head>
 
@@ -69,6 +432,51 @@
 
 
 
+  <div class="container">
+    <h1>Kits Catalog</h1>
+
+    <div class="kits-grid">
+      <div class="kit-card">
+        <h2 class="kit-title">RoboATL Starter Kit</h2>
+
+        <div class="kit-meta">
+          <span class="badge level">Beginner</span>
+          <span class="badge age">Age 8+</span>
+        </div>
+
+        <p class="kit-description">
+          Includes: Arduino-compatible board, Sensors pack, Chassis...
+        </p>
+
+        <div class="kit-price">
+          <span class="price-current">₹1999</span>
+          <span class="price-original">₹2499</span>
+        </div>
+
+        <button class="enquire-btn open-modal">Enquire</button>
+      </div>
+
+      <div class="kit-card">
+        <h2 class="kit-title">IoT Explorer Kit</h2>
+
+        <div class="kit-meta">
+          <span class="badge level">Intermediate</span>
+          <span class="badge age">Age 12+</span>
+        </div>
+
+        <p class="kit-description">
+          Includes: ESP32 board, DHT sensor, OLED...
+        </p>
+
+        <div class="kit-price">
+          <span class="price-current">₹2499</span>
+          <span class="price-original">₹3499</span>
+        </div>
+
+        <button class="enquire-btn open-modal">Enquire</button>
+      </div>
+    </div>
+  </div>
 
 
 
@@ -77,8 +485,7 @@
 
 
 
-
-    <footer class="footer">
+  <footer class="footer">
     <div class="footer-content">
       <div class="footer-brand">
         <div class="brand-header">
@@ -93,31 +500,105 @@
         <div class="social-icons">
           <div class="icon-placeholder">
             <a href="https://api.whatsapp.com/send/?phone=8447886888&text&type=phone_number&app_absent=0">
-            <img src="Assets/Images/wt.png" alt="" width="30px">
+              <img src="Assets/Images/wt.png" alt="" width="30px">
             </a>
           </div>
           <a href="https://www.roboatl.in/cdn-cgi/l/email-protection#9af3f4fcf5dae8f5f8f5fbeef6b4ffe2fbf7eaf6ff">
-          <div class="icon-placeholder">
-            <img src="Assets/Images/gm.png" alt="" width="30px">
-          </div>
+            <div class="icon-placeholder">
+              <img src="Assets/Images/gm.png" alt="" width="30px">
+            </div>
           </a>
           <a href="https://www.linkedin.com/company/roboatl-in/">
-          <div class="icon-placeholder">
-            <img src="Assets/Images/in.png" alt="" width="25px">
-          </div>
+            <div class="icon-placeholder">
+              <img src="Assets/Images/in.png" alt="" width="25px">
+            </div>
           </a>
           <a href="https://www.instagram.com/roboatl?igsh=MTFnbHlvMHg0aHM3Zw==">
-          <div class="icon-placeholder">
-            <img src="Assets/Images/insta.png" alt="" width="30px">
-          </div>
+            <div class="icon-placeholder">
+              <img src="Assets/Images/insta.png" alt="" width="30px">
+            </div>
           </a>
           <a href="https://youtube.com/@roboatl-in?si=yjjylYiNqPAKwTl3">
-          <div class="icon-placeholder">
-            <img src="Assets/Images/yt.png" alt="" width="30px">
-          </div>
+            <div class="icon-placeholder">
+              <img src="Assets/Images/yt.png" alt="" width="30px">
+            </div>
           </a>
         </div>
       </div>
+
+      <div id="overlay" class="overlay"></div>
+
+      <div id="modal" class="modal">
+        <div class="modal-header">
+          <h2>Enquire About Kit</h2>
+          <span id="closeModal" class="close">&times;</span>
+        </div>
+
+        <div class="input-group">
+          <label>Full Name</label>
+          <input type="text" placeholder="Enter your full name">
+        </div>
+
+        <div class="input-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="your.email@example.com">
+        </div>
+
+        <div class="input-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="1234567890">
+        </div>
+
+        <div class="input-group">
+          <label>Select Your Role</label>
+          <select>
+            <option value="">Choose one...</option>
+            <option value="student">Student</option>
+            <option value="parent">Parent</option>
+            <option value="teacher">Teacher</option>
+            <option value="school">School</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label>Your Message</label>
+          <textarea placeholder="Tell us about your interest in our kits..."></textarea>
+        </div>
+
+        <button class="submit-btn">Submit Enquiry</button>
+      </div>
+
+      <script>
+        const openBtns = document.getElementsByClassName('enquire-btn');
+        const closeBtn = document.getElementById('closeModal');
+        const modal = document.getElementById('modal');
+        const overlay = document.getElementById('overlay');
+
+        // Add event to every enquire button
+        for (let btn of openBtns) {
+          btn.addEventListener('click', () => {
+            modal.classList.add('active');
+            overlay.classList.add('active');
+          });
+        }
+
+        // Close modal function
+        function closeModal() {
+          modal.classList.remove('active');
+          overlay.classList.remove('active');
+        }
+
+        closeBtn.addEventListener('click', closeModal);
+        overlay.addEventListener('click', closeModal);
+
+        document.querySelector('.submit-btn').addEventListener('click', (e) => {
+          e.preventDefault();
+          alert('Form submitted! (This is a demo)');
+          modal.classList.remove('active');
+          modalOverlay.classList.remove('active');
+        });
+
+      </script>
 
       <div class="footer-section">
         <h3>Pages</h3>
@@ -149,7 +630,7 @@
     </div>
   </footer>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>

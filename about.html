@@ -21,14 +21,201 @@
 
   <!-- Web Manifest -->
   <link rel="manifest" href="/site.webmanifest">
-
-  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="Responsive.css">
+  <link rel="stylesheet" href="nav&footer.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Lalezar&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Anuphan:wght@100..700&family=Jura:wght@300..700&family=Lalezar&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Anuphan:wght@100..700&family=Jura:wght@300..700&family=Lalezar&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+    :root {
+      --dark-purple: #0d0221ff;
+      --federal-blue: #0f084bff;
+      --marian-blue: #26408bff;
+      --light-blue: #a6cfd5ff;
+      --mint-green: #c2e7d9ff;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 30px 20px;
+      padding-bottom: 60px;
+    }
+
+    .hero-section {
+      text-align: center;
+      margin-bottom: 4rem;
+      padding: 2rem 1rem;
+    }
+
+    .hero-section h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--mint-green);
+      margin-bottom: 1rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .hero-section .tagline {
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      color: var(--light-blue);
+      font-weight: 300;
+    }
+
+    .pillars-section {
+      margin-bottom: 5rem;
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .pillar {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(166, 207, 213, 0.2);
+      padding: 2.5rem 2rem;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pillar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--mint-green), var(--light-blue));
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .pillar:hover::before {
+      transform: scaleX(1);
+    }
+
+    .pillar:hover {
+      transform: translateY(-5px);
+      border-color: var(--mint-green);
+      box-shadow: 0 10px 30px rgba(194, 231, 217, 0.2);
+    }
+
+    .pillar-title {
+      font-size: 1.8rem;
+      color: var(--mint-green);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .pillar-description {
+      font-size: 1.1rem;
+      color: var(--light-blue);
+      line-height: 1.6;
+    }
+
+    .impact-section {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      border-radius: 30px;
+      padding: 3rem 2rem;
+      border: 2px solid rgba(194, 231, 217, 0.3);
+    }
+
+    .impact-title {
+      text-align: center;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--mint-green);
+      margin-bottom: 3rem;
+      font-weight: 700;
+    }
+
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 3rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .stat {
+      text-align: center;
+      position: relative;
+    }
+
+    .stat::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--light-blue), var(--mint-green));
+      border-radius: 2px;
+    }
+
+    .stat-number {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      color: var(--mint-green);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      display: block;
+      text-shadow: 0 0 20px rgba(194, 231, 217, 0.3);
+    }
+
+    .stat-label {
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      color: var(--light-blue);
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem 0.5rem;
+      }
+
+      .pillars-grid {
+        gap: 1.5rem;
+      }
+
+      .pillar {
+        padding: 2rem 1.5rem;
+      }
+
+      .impact-section {
+        padding: 2rem 1.5rem;
+      }
+
+      .stats-container {
+        gap: 2.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-section {
+        margin-bottom: 2.5rem;
+      }
+
+      .pillars-section {
+        margin-bottom: 3rem;
+      }
+
+      .stat::after {
+        bottom: -10px;
+        width: 40px;
+      }
+    }
   </style>
 </head>
 
@@ -67,6 +254,47 @@
 
 
 
+ <div class="container">
+    <div class="hero-section">
+      <h1>About RoboATL</h1>
+      <p class="tagline">Mission-driven STEM & Robotics education for all ages</p>
+    </div>
+
+    <div class="pillars-section">
+      <div class="pillars-grid">
+        <div class="pillar">
+          <h2 class="pillar-title">Mission</h2>
+          <p class="pillar-description">Empower learners with hands-on robotics and coding skills</p>
+        </div>
+        <div class="pillar">
+          <h2 class="pillar-title">Vision</h2>
+          <p class="pillar-description">Make future-ready education accessible to every school</p>
+        </div>
+        <div class="pillar">
+          <h2 class="pillar-title">Pedagogy</h2>
+          <p class="pillar-description">Project-based, iterative learning with real-world outcomes</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="impact-section">
+      <h2 class="impact-title">Impact</h2>
+      <div class="stats-container">
+        <div class="stat">
+          <span class="stat-number">50+</span>
+          <span class="stat-label">Schools Served</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">3,000+</span>
+          <span class="stat-label">Students Trained</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">200+</span>
+          <span class="stat-label">Sessions Delivered</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 
@@ -77,8 +305,7 @@
 
 
 
-
-    <footer class="footer">
+  <footer class="footer">
     <div class="footer-content">
       <div class="footer-brand">
         <div class="brand-header">
@@ -93,28 +320,28 @@
         <div class="social-icons">
           <div class="icon-placeholder">
             <a href="https://api.whatsapp.com/send/?phone=8447886888&text&type=phone_number&app_absent=0">
-            <img src="Assets/Images/wt.png" alt="" width="30px">
+              <img src="Assets/Images/wt.png" alt="" width="30px">
             </a>
           </div>
           <a href="https://www.roboatl.in/cdn-cgi/l/email-protection#9af3f4fcf5dae8f5f8f5fbeef6b4ffe2fbf7eaf6ff">
-          <div class="icon-placeholder">
-            <img src="Assets/Images/gm.png" alt="" width="30px">
-          </div>
+            <div class="icon-placeholder">
+              <img src="Assets/Images/gm.png" alt="" width="30px">
+            </div>
           </a>
           <a href="https://www.linkedin.com/company/roboatl-in/">
-          <div class="icon-placeholder">
-            <img src="Assets/Images/in.png" alt="" width="25px">
-          </div>
+            <div class="icon-placeholder">
+              <img src="Assets/Images/in.png" alt="" width="25px">
+            </div>
           </a>
           <a href="https://www.instagram.com/roboatl?igsh=MTFnbHlvMHg0aHM3Zw==">
-          <div class="icon-placeholder">
-            <img src="Assets/Images/insta.png" alt="" width="30px">
-          </div>
+            <div class="icon-placeholder">
+              <img src="Assets/Images/insta.png" alt="" width="30px">
+            </div>
           </a>
           <a href="https://youtube.com/@roboatl-in?si=yjjylYiNqPAKwTl3">
-          <div class="icon-placeholder">
-            <img src="Assets/Images/yt.png" alt="" width="30px">
-          </div>
+            <div class="icon-placeholder">
+              <img src="Assets/Images/yt.png" alt="" width="30px">
+            </div>
           </a>
         </div>
       </div>
@@ -149,7 +376,7 @@
     </div>
   </footer>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>

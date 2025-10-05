@@ -22,13 +22,163 @@
   <!-- Web Manifest -->
   <link rel="manifest" href="/site.webmanifest">
 
-  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="Responsive.css">
+  <link rel="stylesheet" href="nav&footer.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Lalezar&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Anuphan:wght@100..700&family=Jura:wght@300..700&family=Lalezar&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Anuphan:wght@100..700&family=Jura:wght@300..700&family=Lalezar&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+    :root {
+      --dark-purple: #0d0221ff;
+      --federal-blue: #0f084bff;
+      --marian-blue: #26408bff;
+      --light-blue: #a6cfd5ff;
+      --mint-green: #c2e7d9ff;
+    }
+
+    .outer-container{
+      padding: 30px 20px;
+      padding-bottom: 60px;
+    }
+
+
+    .container {
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-width: 800px;
+      width: 100%;
+      padding: 40px;
+      backdrop-filter: blur(10px);
+      transform: translateY(0);
+      transition: transform 0.3s ease;
+    }
+
+    .container:hover {
+      transform: translateY(-5px);
+    }
+
+    h1 {
+      color: var(--federal-blue);
+      margin-bottom: 10px;
+      font-size: 2em;
+      text-align: center;
+    }
+
+    .subtitle {
+      color: var(--marian-blue);
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 0.95em;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      color: var(--federal-blue);
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 0.9em;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .optional {
+      color: var(--marian-blue);
+      font-weight: 400;
+      text-transform: none;
+      font-size: 0.85em;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid var(--light-blue);
+      border-radius: 10px;
+      font-size: 1em;
+      font-family: inherit;
+      transition: all 0.3s ease;
+      background: white;
+      color: var(--dark-purple);
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--marian-blue);
+      box-shadow: 0 0 0 4px rgba(38, 64, 139, 0.1);
+      transform: translateY(-2px);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    button {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, var(--marian-blue) 0%, var(--federal-blue) 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 15px rgba(38, 64, 139, 0.3);
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(38, 64, 139, 0.4);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .success-message {
+      display: none;
+      background: var(--mint-green);
+      color: var(--federal-blue);
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 20px;
+      text-align: center;
+      font-weight: 600;
+      animation: slideIn 0.5s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 30px 20px;
+      }
+
+      h1 {
+        font-size: 1.6em;
+      }
+    }
   </style>
 </head>
 
@@ -66,6 +216,58 @@
 
 
 
+  <div class="outer-container">
+    <div class="container">
+    <h1>Get in Touch</h1>
+    <p class="subtitle">We'd love to hear from you. Send us a message!</p>
+
+    <form id="contactForm">
+      <div class="form-group">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" required placeholder="John Doe">
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required placeholder="john@example.com">
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone Number <span class="optional">(Optional)</span></label>
+        <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567">
+      </div>
+
+      <div class="form-group">
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message" required placeholder="Tell us what's on your mind..."></textarea>
+      </div>
+
+      <button type="submit">Send Message</button>
+
+      <div class="success-message" id="successMessage">
+        ✓ Thank you! Your message has been sent successfully.
+      </div>
+    </form>
+  </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('contactForm');
+    const successMessage = document.getElementById('successMessage');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // Show success message
+      successMessage.style.display = 'block';
+
+      // Reset form
+      setTimeout(() => {
+        form.reset();
+        successMessage.style.display = 'none';
+      }, 3000);
+    });
+  </script>
 
 
 
@@ -77,8 +279,7 @@
 
 
 
-
-    <footer class="footer">
+  <footer class="footer">
     <div class="footer-content">
       <div class="footer-brand">
         <div class="brand-header">
@@ -93,28 +294,28 @@
         <div class="social-icons">
           <div class="icon-placeholder">
             <a href="https://api.whatsapp.com/send/?phone=8447886888&text&type=phone_number&app_absent=0">
-            <img src="Assets/Images/wt.png" alt="" width="30px">
+              <img src="Assets/Images/wt.png" alt="" width="30px">
             </a>
           </div>
           <a href="https://www.roboatl.in/cdn-cgi/l/email-protection#9af3f4fcf5dae8f5f8f5fbeef6b4ffe2fbf7eaf6ff">
-          <div class="icon-placeholder">
-            <img src="Assets/Images/gm.png" alt="" width="30px">
-          </div>
+            <div class="icon-placeholder">
+              <img src="Assets/Images/gm.png" alt="" width="30px">
+            </div>
           </a>
           <a href="https://www.linkedin.com/company/roboatl-in/">
-          <div class="icon-placeholder">
-            <img src="Assets/Images/in.png" alt="" width="25px">
-          </div>
+            <div class="icon-placeholder">
+              <img src="Assets/Images/in.png" alt="" width="25px">
+            </div>
           </a>
           <a href="https://www.instagram.com/roboatl?igsh=MTFnbHlvMHg0aHM3Zw==">
-          <div class="icon-placeholder">
-            <img src="Assets/Images/insta.png" alt="" width="30px">
-          </div>
+            <div class="icon-placeholder">
+              <img src="Assets/Images/insta.png" alt="" width="30px">
+            </div>
           </a>
           <a href="https://youtube.com/@roboatl-in?si=yjjylYiNqPAKwTl3">
-          <div class="icon-placeholder">
-            <img src="Assets/Images/yt.png" alt="" width="30px">
-          </div>
+            <div class="icon-placeholder">
+              <img src="Assets/Images/yt.png" alt="" width="30px">
+            </div>
           </a>
         </div>
       </div>
@@ -149,7 +350,7 @@
     </div>
   </footer>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>

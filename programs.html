@@ -22,19 +22,430 @@
   <!-- Web Manifest -->
   <link rel="manifest" href="/site.webmanifest">
 
-  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="Responsive.css">
+  <link rel="stylesheet" href="nav&footer.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Lalezar&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Anuphan:wght@100..700&family=Jura:wght@300..700&family=Lalezar&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Anuphan:wght@100..700&family=Jura:wght@300..700&family=Lalezar&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+    :root {
+      --dark-purple: #0d0221ff;
+      --federal-blue: #0f084bff;
+      --marian-blue: #26408bff;
+      --light-blue: #a6cfd5ff;
+      --mint-green: #c2e7d9ff;
+    }
+
+    .container {
+      padding: 30px 20px;
+      padding-bottom: 60px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .header {
+      margin-bottom: 50px;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--mint-green), var(--light-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 3px;
+      margin-bottom: 30px;
+      animation: glow 3s ease-in-out infinite;
+    }
+
+    @keyframes glow {
+
+      0%,
+      100% {
+        filter: drop-shadow(0 0 20px rgba(162, 207, 213, 0.3));
+      }
+
+      50% {
+        filter: drop-shadow(0 0 40px rgba(162, 207, 213, 0.6));
+      }
+    }
+
+    .filters {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .filter-group {
+      position: relative;
+    }
+
+    select {
+      appearance: none;
+      background: rgba(38, 64, 139, 0.3);
+      border: 2px solid var(--marian-blue);
+      color: var(--light-blue);
+      padding: 12px 40px 12px 20px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    select:hover {
+      background: rgba(38, 64, 139, 0.5);
+      border-color: var(--light-blue);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(162, 207, 213, 0.2);
+    }
+
+    select:focus {
+      outline: none;
+      border-color: var(--mint-green);
+      box-shadow: 0 0 10px rgba(194, 231, 217, 0.2);
+    }
+
+    select option {
+      background: var(--federal-blue);
+      color: var(--light-blue);
+      padding: 12px;
+      font-weight: 600;
+    }
+
+    select option:hover,
+    select option:checked {
+      background: var(--marian-blue);
+      color: var(--mint-green);
+    }
+
+    .filter-group::after {
+      content: '▼';
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--light-blue);
+      pointer-events: none;
+      font-size: 12px;
+    }
+
+
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .program-card {
+      background: linear-gradient(145deg, rgba(38, 64, 139, 0.2), rgba(15, 8, 75, 0.3));
+      border: 2px solid transparent;
+      border-radius: 25px;
+      padding: 35px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      backdrop-filter: blur(10px);
+      animation: fadeInUp 0.6s ease forwards;
+      opacity: 0;
+    }
+
+    .program-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(162, 207, 213, 0.1), transparent);
+      transform: rotate(45deg);
+      transition: all 0.6s;
+    }
+
+    .program-card:hover::before {
+      left: 100%;
+    }
+
+    .program-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      border-color: var(--mint-green);
+      box-shadow: 0 20px 60px rgba(194, 231, 217, 0.3);
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .program-card:nth-child(1) {
+      animation-delay: 0.1s;
+      transform: translateY(20px);
+    }
+
+    .program-card:nth-child(2) {
+      animation-delay: 0.2s;
+      transform: translateY(20px);
+    }
+
+    .program-card:nth-child(3) {
+      animation-delay: 0.3s;
+      transform: translateY(20px);
+    }
+
+    .card-header {
+      margin-bottom: 20px;
+    }
+
+    .card-title {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+    }
+
+    .card-title h2 {
+      font-size: 1.8rem;
+      color: var(--mint-green);
+      font-weight: 700;
+      text-shadow: 0 0 20px rgba(194, 231, 217, 0.3);
+    }
+
+    .popular-badge {
+      background: linear-gradient(135deg, var(--mint-green), var(--light-blue));
+      color: var(--dark-purple);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(194, 231, 217, 0.7);
+      }
+
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px 10px rgba(194, 231, 217, 0);
+      }
+    }
+
+    .card-meta {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      color: var(--light-blue);
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .meta-item::before {
+      content: '●';
+      color: var(--mint-green);
+    }
+
+    .card-description {
+      color: rgba(162, 207, 213, 0.9);
+      line-height: 1.6;
+      margin-bottom: 25px;
+      font-size: 1rem;
+    }
+
+    .card-tags {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
+    }
+
+    .tag {
+      background: rgba(38, 64, 139, 0.4);
+      color: var(--light-blue);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      border: 1px solid var(--marian-blue);
+      transition: all 0.3s ease;
+    }
+
+    .tag:hover {
+      background: rgba(38, 64, 139, 0.6);
+      transform: translateY(-2px);
+    }
+
+    .price-tag {
+      background: linear-gradient(135deg, var(--marian-blue), var(--federal-blue));
+      color: var(--mint-green);
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: 2px solid var(--mint-green);
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      flex: 1;
+      min-width: 120px;
+      padding: 14px 20px;
+      border: none;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .btn:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .btn span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--mint-green), var(--light-blue));
+      color: var(--dark-purple);
+      box-shadow: 0 5px 20px rgba(194, 231, 217, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(194, 231, 217, 0.6);
+    }
+
+    .btn-secondary {
+      background: rgba(38, 64, 139, 0.4);
+      color: var(--light-blue);
+      border: 2px solid var(--marian-blue);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(38, 64, 139, 0.6);
+      border-color: var(--light-blue);
+      transform: translateY(-3px);
+    }
+
+    .btn-tertiary {
+      background: transparent;
+      color: var(--mint-green);
+      border: 2px solid var(--mint-green);
+    }
+
+    .btn-tertiary:hover {
+      background: rgba(194, 231, 217, 0.1);
+      transform: translateY(-3px);
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--light-blue);
+      font-size: 1.3rem;
+      display: none;
+    }
+
+    .no-results.show {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 30px 5px;
+      }
+
+      .programs-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card-actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .header h1 {
+        font-size: 2.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 20px 10px;
+      }
+
+      .program-card {
+        padding: 25px;
+      }
+
+      .filters {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      select {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 
 <body>
-
-
   <nav>
     <div class="nav-container">
       <a href="#" class="logo">
@@ -67,6 +478,108 @@
 
 
 
+  <div class="container">
+    <div class="header">
+      <h1>PROGRAMS</h1>
+      <div class="filters">
+        <div class="filter-group">
+          <select id="levelFilter">
+            <option value="all">All Levels</option>
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="advanced">Advanced</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <select id="audienceFilter">
+            <option value="all">All Audiences</option>
+            <option value="online">Online</option>
+            <option value="offline">Offline</option>
+            <option value="online-offline">Online / Offline</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="programs-grid" id="programsGrid">
+      <div class="program-card" data-level="beginner" data-audience="online-offline">
+        <div class="card-header">
+          <div class="card-title">
+            <h2>Robotics Basics 101</h2>
+            <span class="popular-badge">Popular</span>
+          </div>
+          <div class="card-meta">
+            <span class="meta-item">Beginner</span>
+            <span class="meta-item">Online / Offline</span>
+          </div>
+        </div>
+        <p class="card-description">
+          Sensors & actuators • Basic coding • Assemble simple bots
+        </p>
+        <div class="card-tags">
+          <span class="tag">Beginner</span>
+          <span class="tag price-tag">₹4999</span>
+        </div>
+        <div class="card-actions">
+          <button class="btn btn-primary"><span>Enquire</span></button>
+          <button class="btn btn-secondary"><span>Download Brochure</span></button>
+          <button class="btn btn-tertiary"><span>Request Demo</span></button>
+        </div>
+      </div>
+
+      <div class="program-card" data-level="intermediate" data-audience="online">
+        <div class="card-header">
+          <div class="card-title">
+            <h2>Embedded Systems & IoT</h2>
+          </div>
+          <div class="card-meta">
+            <span class="meta-item">Intermediate</span>
+            <span class="meta-item">Online</span>
+          </div>
+        </div>
+        <p class="card-description">
+          MCU programming • IoT cloud basics • Smart home project
+        </p>
+        <div class="card-tags">
+          <span class="tag">Intermediate</span>
+          <span class="tag price-tag">₹6999</span>
+        </div>
+        <div class="card-actions">
+          <button class="btn btn-primary"><span>Enquire</span></button>
+          <button class="btn btn-secondary"><span>Download Brochure</span></button>
+          <button class="btn btn-tertiary"><span>Request Demo</span></button>
+        </div>
+      </div>
+
+      <div class="program-card" data-level="advanced" data-audience="online">
+        <div class="card-header">
+          <div class="card-title">
+            <h2>AI for Robotics</h2>
+          </div>
+          <div class="card-meta">
+            <span class="meta-item">Advanced</span>
+            <span class="meta-item">Online</span>
+          </div>
+        </div>
+        <p class="card-description">
+          Vision & ML • Path planning • Autonomous projects
+        </p>
+        <div class="card-tags">
+          <span class="tag">Advanced</span>
+          <span class="tag price-tag">₹9999</span>
+        </div>
+        <div class="card-actions">
+          <button class="btn btn-primary"><span>Enquire</span></button>
+          <button class="btn btn-secondary"><span>Download Brochure</span></button>
+          <button class="btn btn-tertiary"><span>Request Demo</span></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="no-results" id="noResults">
+      No programs found matching your filters. Try adjusting your selection.
+    </div>
+  </div>
 
 
 
@@ -77,8 +590,7 @@
 
 
 
-
-    <footer class="footer">
+  <footer class="footer">
     <div class="footer-content">
       <div class="footer-brand">
         <div class="brand-header">
@@ -93,28 +605,28 @@
         <div class="social-icons">
           <div class="icon-placeholder">
             <a href="https://api.whatsapp.com/send/?phone=8447886888&text&type=phone_number&app_absent=0">
-            <img src="Assets/Images/wt.png" alt="" width="30px">
+              <img src="Assets/Images/wt.png" alt="" width="30px">
             </a>
           </div>
           <a href="https://www.roboatl.in/cdn-cgi/l/email-protection#9af3f4fcf5dae8f5f8f5fbeef6b4ffe2fbf7eaf6ff">
-          <div class="icon-placeholder">
-            <img src="Assets/Images/gm.png" alt="" width="30px">
-          </div>
+            <div class="icon-placeholder">
+              <img src="Assets/Images/gm.png" alt="" width="30px">
+            </div>
           </a>
           <a href="https://www.linkedin.com/company/roboatl-in/">
-          <div class="icon-placeholder">
-            <img src="Assets/Images/in.png" alt="" width="25px">
-          </div>
+            <div class="icon-placeholder">
+              <img src="Assets/Images/in.png" alt="" width="25px">
+            </div>
           </a>
           <a href="https://www.instagram.com/roboatl?igsh=MTFnbHlvMHg0aHM3Zw==">
-          <div class="icon-placeholder">
-            <img src="Assets/Images/insta.png" alt="" width="30px">
-          </div>
+            <div class="icon-placeholder">
+              <img src="Assets/Images/insta.png" alt="" width="30px">
+            </div>
           </a>
           <a href="https://youtube.com/@roboatl-in?si=yjjylYiNqPAKwTl3">
-          <div class="icon-placeholder">
-            <img src="Assets/Images/yt.png" alt="" width="30px">
-          </div>
+            <div class="icon-placeholder">
+              <img src="Assets/Images/yt.png" alt="" width="30px">
+            </div>
           </a>
         </div>
       </div>
@@ -149,7 +661,69 @@
     </div>
   </footer>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
+
+
+  <script>
+    const levelFilter = document.getElementById('levelFilter');
+    const audienceFilter = document.getElementById('audienceFilter');
+    const programsGrid = document.getElementById('programsGrid');
+    const noResults = document.getElementById('noResults');
+    const programCards = document.querySelectorAll('.program-card');
+
+    function filterPrograms() {
+      const selectedLevel = levelFilter.value;
+      const selectedAudience = audienceFilter.value;
+      let visibleCount = 0;
+
+      programCards.forEach(card => {
+        const cardLevel = card.getAttribute('data-level');
+        const cardAudience = card.getAttribute('data-audience');
+
+        const levelMatch = selectedLevel === 'all' || cardLevel === selectedLevel;
+        const audienceMatch = selectedAudience === 'all' || cardAudience.includes(selectedAudience);
+
+        if (levelMatch && audienceMatch) {
+          card.style.display = 'block';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      if (visibleCount === 0) {
+        noResults.classList.add('show');
+        programsGrid.style.display = 'none';
+      } else {
+        noResults.classList.remove('show');
+        programsGrid.style.display = 'grid';
+      }
+    }
+
+    levelFilter.addEventListener('change', filterPrograms);
+    audienceFilter.addEventListener('change', filterPrograms);
+
+    // Add click animations to buttons
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('click', function (e) {
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        ripple.classList.add('ripple');
+
+        this.appendChild(ripple);
+
+        setTimeout(() => ripple.remove(), 600);
+      });
+    });
+  </script>
+
 </body>
 
 </html>
